@@ -2,22 +2,22 @@ import sbt.Keys.libraryDependencies
 import sbt._
 
 object Dependencies {
-  val AkkaHttpVersion                = "10.2.10"
-  val AkkaVersion                    = "2.6.21"
+  val AkkaHttpVersion                = "10.4.0"
+  val AkkaVersion                    = "2.7.0"
   val CatsVersion                    = "2.13.0"
   val CatsEffectVersion              = "3.6.1"
   val CirceVersion                   = "0.14.15"
   val CommonsIoVersion               = "2.21.0"
-  val ElasticsearchVersion           = "9.2.1"
+  val ElasticsearchVersion           = "9.2.3"
   val ExtsVersion                    = "1.61.1"
   val Http4sVersion                  = "0.23.33"
-  val JacksonVersion                 = "2.20.1"
+  val JacksonVersion                 = "3.0.3"
   val Json4sVersion                  = "4.1.0"
-  val Log4jVersion                   = "2.25.2"
-  val MockitoVersion                 = "5.20.0"
+  val Log4jVersion                   = "2.25.3"
+  val MockitoVersion                 = "5.21.0"
   val MonixVersion                   = "3.4.1"
   val PekkoHttpVersion               = "1.3.0"
-  val PekkoVersion                   = "1.3.0"
+  val PekkoVersion                   = "1.4.0"
   val PlayJsonVersion                = "3.0.6"
   val ReactiveStreamsVersion         = "1.0.4"
   val ScalatestPlusMockitoArtifactId = "mockito-5-12"
@@ -30,7 +30,7 @@ object Dependencies {
   val ZIOJson1Version                = "0.1.5"
   val ZIO1Version                    = "1.0.18"
   val ZIOVersion                     = "2.1.23"
-  val ZIOJsonVersion                 = "0.7.45"
+  val ZIOJsonVersion                 = "0.8.0"
 
   lazy val commonDeps = Seq(
     libraryDependencies ++= Seq(
@@ -42,11 +42,11 @@ object Dependencies {
     )
   )
 
-  lazy val fasterXmlJacksonScala = Seq(
-    "com.fasterxml.jackson.core"    % "jackson-core"         % JacksonVersion,
-    "com.fasterxml.jackson.core"    % "jackson-databind"     % JacksonVersion,
-    "com.fasterxml.jackson.module" %% "jackson-module-scala" % JacksonVersion
-  )
+  lazy val fasterXmlJacksonCore        = "tools.jackson.core"    % "jackson-core"         % JacksonVersion
+  lazy val fasterXmlJacksonDatabind    = "tools.jackson.core"    % "jackson-databind"     % JacksonVersion
+  lazy val fasterXmlJacksonModuleScala = "tools.jackson.module" %% "jackson-module-scala" % JacksonVersion
+
+  lazy val fasterXmlJacksonScala = Seq(fasterXmlJacksonCore, fasterXmlJacksonDatabind, fasterXmlJacksonModuleScala)
 
   lazy val zio1 = "dev.zio" %% "zio" % ZIO1Version
   lazy val zio  = "dev.zio" %% "zio" % ZIOVersion
